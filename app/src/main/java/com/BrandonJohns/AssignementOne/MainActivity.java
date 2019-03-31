@@ -15,13 +15,9 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private static final double FEET_IN_METER = 3.2808;
-    double length;
-    double current;
-    double area;
-    double voltage;
     String units = "Metric";
     TextView displayVoltageDrop;
-    TextView displayVoltageDropPercent;
+    TextView displayVoltageDropPercent = findViewById(R.id.voltage_drop_percent);
     TextView displayWatts;
     EditText lengthInput;
     EditText currentInput;
@@ -41,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // TODO: 31/03/2019 maybe move these 
         displayVoltageDrop = findViewById(R.id.voltage_drop);
-        displayVoltageDropPercent = findViewById(R.id.voltage_drop_percent);
         displayWatts = findViewById(R.id.watts);
         lengthInput = findViewById(R.id.length);
         lengthText = findViewById(R.id.length_text);
@@ -85,6 +81,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void calculate(View view) {
+        double length;
+        double current;
+        double area;
+        double voltage;
         try {
             //get current input
             current = Double.parseDouble(currentInput.getText().toString());
