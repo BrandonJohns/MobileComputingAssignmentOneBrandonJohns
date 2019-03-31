@@ -40,6 +40,7 @@ public class SettingsActivity extends Activity {
         finish();
     }
 
+    // TODO: 31/03/2019 have a look at these two
     public void exitToMain(View view) {
         finish();
     }

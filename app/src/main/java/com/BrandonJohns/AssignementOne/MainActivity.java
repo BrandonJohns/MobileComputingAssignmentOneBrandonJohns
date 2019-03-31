@@ -13,19 +13,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import java.util.Locale;
-
 public class MainActivity extends AppCompatActivity {
-    static final double WIRE_RESISTANCE = 0.017;
     private static final double FEET_IN_METER = 3.2808;
     double length;
     double current;
     double area;
     double voltage;
-    String formattedVoltageDrop;
-    String formattedVoltageDropPercent;
-    String formattedWatts;
     String units = "Metric";
     TextView displayVoltageDrop;
     TextView displayVoltageDropPercent;
@@ -37,10 +30,12 @@ public class MainActivity extends AppCompatActivity {
     TextView lengthText;
     ArrayAdapter<CharSequence> metricAdapter;
     ArrayAdapter<CharSequence> imperialAdapter;
-
+    Calculator calculator;
+    String formattedVoltageDrop;
+    String formattedVoltageDropPercent;
+    String formattedWatts;
 
     // TODO: 24/03/2019 test classes
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
                 displayWatts.setText(formattedWatts);
             }
         }
-
         //metric
         metricAdapter = ArrayAdapter.createFromResource(this, R.array.metric_cable_sizes,
                 android.R.layout.simple_spinner_item);
@@ -76,13 +70,7 @@ public class MainActivity extends AppCompatActivity {
         imperialAdapter = ArrayAdapter.createFromResource(this,
                 R.array.imperial_cable_sizes, android.R.layout.simple_spinner_item);
         imperialAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        if (units.equals("Metric")) {
-            spinner.setAdapter(metricAdapter);
-            lengthText.setText(getString(R.string.metric_length_text));
-        } else {
-            spinner.setAdapter(imperialAdapter);
-            lengthText.setText(getString(R.string.imperial_length_text));
-        }
+        updateUI();
     }
 
     @Override
@@ -98,6 +86,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void calculate(View view) {
         try {
+            //get current input
+            current = Double.parseDouble(currentInput.getText().toString());
+            //get voltage input
+            voltage = Double.parseDouble(voltageInput.getText().toString());
             //Metric inputs
             if (units.equals("Metric")) {
                 //get length input
@@ -116,21 +108,12 @@ public class MainActivity extends AppCompatActivity {
                 area = Double.parseDouble(sizeValues[spinnerPos]);
                 length = Double.parseDouble(lengthInput.getText().toString()) / FEET_IN_METER;
             }
+            calculator = new Calculator(length, current, area, voltage);
+            calculator.calculate();
 
-            //get current input
-            current = Double.parseDouble(currentInput.getText().toString());
-            //get voltage input
-            voltage = Double.parseDouble(voltageInput.getText().toString());
-
-            double voltageDrop = length * current * WIRE_RESISTANCE / area;
-            double voltageDropPercent = voltageDrop / voltage * 100;
-            double watts = current * voltage;
-
-            formattedVoltageDrop = String.format(Locale.getDefault(), "%.2fV",
-                    voltageDrop);
-            formattedVoltageDropPercent = String.format(Locale.getDefault(), "%.2f%%",
-                    voltageDropPercent);
-            formattedWatts = String.format(Locale.getDefault(), "%.1fW", watts);
+            formattedVoltageDrop = calculator.getFormattedVoltageDrop();
+            formattedVoltageDropPercent = calculator.getFormattedVoltageDropPercent();
+            formattedWatts = calculator.getFormattedWatts();
 
             displayVoltageDrop.setText(formattedVoltageDrop);
             displayVoltageDropPercent.setText(formattedVoltageDropPercent);
