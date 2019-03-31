@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // TODO: 31/03/2019 maybe move these 
+        // TODO: 31/03/2019 maybe move these
         displayVoltageDrop = findViewById(R.id.voltage_drop);
         displayWatts = findViewById(R.id.watts);
         lengthInput = findViewById(R.id.length);
