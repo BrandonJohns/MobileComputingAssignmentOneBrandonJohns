@@ -47,6 +47,15 @@
         android:layout_width="match_parent">
 
         <Button
+            style="@style/TextAppearance.AppCompat.Widget.Button.Borderless.Colored"
+            android:id="@+id/cancel_button"
+            android:text="@string/cancel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="exitToMain"/>
+
+        <Button
             style="@style/TextAppearance.AppCompat.Widget.Button"
             android:id="@+id/save_settings_button"
             android:text="@string/save_settings"
@@ -55,14 +64,7 @@
             android:layout_weight="1"
             android:onClick="saveSettings"/>
 
-        <Button
-            style="@style/TextAppearance.AppCompat.Widget.Button.Borderless.Colored"
-            android:id="@+id/cancel_button"
-            android:text="@string/cancel"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:onClick="exitToMain"/>
+
     </TableRow>
 
 </LinearLayout>
