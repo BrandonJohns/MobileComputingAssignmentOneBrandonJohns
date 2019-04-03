@@ -21,9 +21,11 @@ class Calculator {
 
     }
     void calculate(){
-        this.voltageDrop = length * current * WIRE_RESISTANCE / area;
-        this.voltageDropPercent = voltageDrop / voltage * 100;
-        this.watts = current * voltage;
+        if (voltage != 0) {
+            this.voltageDrop = length * current * WIRE_RESISTANCE / area;
+            this.voltageDropPercent = voltageDrop / voltage * 100;
+            this.watts = current * voltage;
+        }
     }
     String getFormattedVoltageDrop(){
         return String.format(Locale.getDefault(), "%.2fV",

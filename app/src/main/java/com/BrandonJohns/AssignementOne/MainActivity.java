@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
     String formattedVoltageDropPercent;
     String formattedWatts;
 
-    // TODO: 24/03/2019 test classes
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +51,8 @@ public class MainActivity extends AppCompatActivity {
             formattedVoltageDrop = savedInstanceState.getString("voltageDrop");
             formattedVoltageDropPercent = savedInstanceState.getString("voltageDropPercent");
             formattedWatts = savedInstanceState.getString("watts");
-            if (formattedWatts != null){ // TODO: 24/03/2019 fix this hack to address all the variables
+            // TODO: 3/04/19 is this if statement redundant? 
+            if (formattedWatts != null && formattedVoltageDrop != null && formattedVoltageDropPercent != null){
                 displayVoltageDrop.setText(formattedVoltageDrop);
                 displayVoltageDropPercent.setText(formattedVoltageDropPercent);
                 displayWatts.setText(formattedWatts);
@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         double current;
         double area;
         double voltage;
+
         try {
             //get current input
             current = Double.parseDouble(currentInput.getText().toString());
