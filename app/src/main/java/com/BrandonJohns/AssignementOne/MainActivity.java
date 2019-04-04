@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private static final double FEET_IN_METER = 3.2808;
     String units = "Metric";
     TextView displayVoltageDrop;
-    TextView displayVoltageDropPercent = findViewById(R.id.voltage_drop_percent);
+    TextView displayVoltageDropPercent;
     TextView displayWatts;
     EditText lengthInput;
     EditText currentInput;
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // TODO: 31/03/2019 maybe move these
+        displayVoltageDropPercent = findViewById(R.id.voltage_drop_percent);
         displayVoltageDrop = findViewById(R.id.voltage_drop);
         displayWatts = findViewById(R.id.watts);
         lengthInput = findViewById(R.id.length);
@@ -51,8 +51,7 @@ public class MainActivity extends AppCompatActivity {
             formattedVoltageDrop = savedInstanceState.getString("voltageDrop");
             formattedVoltageDropPercent = savedInstanceState.getString("voltageDropPercent");
             formattedWatts = savedInstanceState.getString("watts");
-            // TODO: 3/04/19 is this if statement redundant? 
-            if (formattedWatts != null && formattedVoltageDrop != null && formattedVoltageDropPercent != null){
+            if (formattedWatts != null){
                 displayVoltageDrop.setText(formattedVoltageDrop);
                 displayVoltageDropPercent.setText(formattedVoltageDropPercent);
                 displayWatts.setText(formattedWatts);
@@ -96,18 +95,19 @@ public class MainActivity extends AppCompatActivity {
                 //get length input
                 length = Double.parseDouble(lengthInput.getText().toString());
                 //cable choice
-                spinner = findViewById(R.id.cableSpinner);
                 String areaString = spinner.getSelectedItem().toString();
                 areaString = areaString.replaceAll("mm²", "");
                 area = Double.parseDouble(areaString);
             }
             //imperial inputs
             else {
+                //get length input
+                length = Double.parseDouble(lengthInput.getText().toString()) / FEET_IN_METER;
                 //cable choice
                 int spinnerPos = spinner.getSelectedItemPosition();
                 String[] sizeValues = getResources().getStringArray(R.array.imperial_cable_values);
                 area = Double.parseDouble(sizeValues[spinnerPos]);
-                length = Double.parseDouble(lengthInput.getText().toString()) / FEET_IN_METER;
+
             }
             calculator = new Calculator(length, current, area, voltage);
             calculator.calculate();

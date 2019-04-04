@@ -22,6 +22,7 @@
     <string name="save_settings">Save Settings</string>
     <string name="cancel">Cancel</string>
     <string name="imperial_length_text">Length (ft)</string>
+    <string name="back">Back</string>
     <string-array name="metric_cable_sizes">
         <item>120mm²</item>
         <item>95mm²</item>

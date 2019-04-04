@@ -30,10 +30,9 @@ public class calculatorTest {
         assertEquals("0.0W", calculator2.getFormattedWatts());
         assertEquals("0.00%", calculator2.getFormattedVoltageDropPercent());
         Calculator calculator3 = new Calculator(10, 0, 120, 12);
-        calculator2.calculate();
+        calculator3.calculate();
         assertEquals("0.00V", calculator3.getFormattedVoltageDrop());
         assertEquals("0.0W", calculator3.getFormattedWatts());
         assertEquals("0.00%", calculator3.getFormattedVoltageDropPercent());
-
     }
 }

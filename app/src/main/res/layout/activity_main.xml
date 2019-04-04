@@ -32,7 +32,7 @@
             <EditText
                 android:id="@+id/length"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_column="1"
                 android:layout_weight="3"
                 android:hint="@string/length_prompt"
@@ -57,7 +57,7 @@
             <EditText
                 android:id="@+id/current"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_column="1"
                 android:layout_weight="3"
                 android:hint="@string/current_draw_prompt"
@@ -82,7 +82,7 @@
             <EditText
                 android:id="@+id/voltage"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_column="1"
                 android:layout_weight="3"
                 android:hint="@string/voltage_prompt"
@@ -98,7 +98,7 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_column="0"
                 android:layout_weight="1"
                 android:text="@string/cable_selection"
@@ -107,7 +107,7 @@
             <Spinner
                 android:id="@+id/cableSpinner"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_column="1"
                 android:layout_weight="3"
                 android:hint="@string/cable_selection_prompt" />
